@@ -153,7 +153,7 @@ class Millioner():
             add_image(screen, "images/millioner_images/exitLogo.png", round(WIDTH / 50), round(HEIGHT / 8),
                       round(WIDTH / 14.28),
                       round(HEIGHT / 16), PINK)
-            add_image(screen, "images/quiestion_block.png", (WIDTH - QUESTION_BLOCK_WIDTH) / 2,
+            add_image(screen, "images/millioner_images/quiestion_block.png", (WIDTH - QUESTION_BLOCK_WIDTH) / 2,
                       HEIGHT - QUESTION_BLOCK_HEIGHT,
                       QUESTION_BLOCK_WIDTH, QUESTION_BLOCK_HEIGHT, None)
             add_image(screen, "images/millioner_images/level_board_icon.png", WIDTH - round(WIDTH / 10),
