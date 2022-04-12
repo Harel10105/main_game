@@ -302,6 +302,7 @@ class Millioner():
             pointer = not pointer
             pygame.display.update()
             clock.tick(REFRESH_RATE)
+        mixer.music.stop()
 
     def game(self, screen):
         mixer.init()
