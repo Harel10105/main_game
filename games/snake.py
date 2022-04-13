@@ -1,6 +1,5 @@
 import pygame
 import random
-import time
 from helpers_and_functions.constants_files.constants_snake import *
 from pygame import mixer
 
@@ -33,7 +32,7 @@ class Snake():
                              (apple_loc[0] * GRID_SIZE, apple_loc[1] * GRID_SIZE, GRID_SIZE, GRID_SIZE))
 
     def get_high_score(self):
-        f = open("games/game_files/high.txt", "r")
+        f = open("games/game_files/high_snake.txt", "r")
         line = f.readlines()
         return line[-1]
 
@@ -159,7 +158,7 @@ class Snake():
             print(int(self.get_high_score()))
             if int(self.get_high_score()) < self.score:
                 print(1111)
-                with open("games/game_files/high.txt", "r+") as file:
+                with open("games/game_files/high_snake.txt", "r+") as file:
                     file.seek(0)
                     file.truncate(0)
                     file.write(str(self.score))
