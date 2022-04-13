@@ -23,6 +23,7 @@ mixer.music.load("music/hub_music/Super Mario Party OST - Main Theme.wav")
 mixer.music.play(-1)
 while running:
     add_image(screen, "images/menu_images/background.png", 0, 0, WIDTH, HEIGHT, None)
+    add_image(screen, "images/menu_images/title2.jpg", MAIN_TITLE_X, MAIN_TITLE_Y, MAIN_TITLE_WIDTH, MAIN_TITLE_HEIGHT,
     for i in range(len(angles)):
         angle = 270 - angles[i]
         horizontal = math.sin(math.radians(angle)) * RADIUS * 2
