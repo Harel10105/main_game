@@ -1,5 +1,6 @@
 import pygame
 import random
+import time
 from helpers_and_functions.constants_files.constants_snake import *
 from pygame import mixer
 
