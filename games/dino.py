@@ -1,4 +1,7 @@
 import time
+
+from pygame import mixer
+
 from helpers_and_functions.function_helpers import *
 from helpers_and_functions.buttons_to_use.buttons_to_use_dino import *
 
@@ -6,6 +9,9 @@ from helpers_and_functions.buttons_to_use.buttons_to_use_dino import *
 class Dino:
     def __init__(self, screen):
         pygame.init()
+        mixer.init()
+        mixer.music.load("music/dino_music/Sonic The Hedgehog OST - Green Hill Zone (1).wav")
+        mixer.music.play(-1)
         self.screen = screen
         back = pygame.image.load("images/dino_images/dino_backgruond.png")
         self.back = pygame.transform.scale(back, (WIDTH * 10, HEIGHT))

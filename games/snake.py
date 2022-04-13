@@ -1,11 +1,11 @@
-
 import pygame
 import random
 from helpers_and_functions.constants_files.constants_snake import *
 from pygame import mixer
 
+
 class Snake():
-    def __init__(self,screen):
+    def __init__(self, screen):
         self.reachGoal = False
         self.score = 0
         self.screen = screen
@@ -84,10 +84,6 @@ class Snake():
             textRect = text.get_rect()
             textRect.center = (WIDTH / 2, 300)
             game_screen.blit(text, textRect)
-            text = font.render('PRESS BACKSPACE FOR AI PLAY', True, (255, 255, 255), START_BACKGROUND_COLOR)
-            textRect = text.get_rect()
-            textRect.center = (WIDTH / 2, 400)
-            game_screen.blit(text, textRect)
             pygame.display.update()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -96,7 +92,6 @@ class Snake():
                     if event.key == pygame.K_SPACE:
                         self.main_game()
                         self.score = 0
-
 
     def display_text(self, screen, x, y, text):
         font = pygame.font.SysFont('bahnschrift', round(WIDTH / 70) + round(HEIGHT / 70))
@@ -167,13 +162,11 @@ class Snake():
                     file.seek(0)
                     file.truncate(0)
                     file.write(str(self.score))
-                    mixer.music.load("music/snake_music/stage_clear.wav")
-                    mixer.music.play()
                     if not self.reachGoal:
                         self.reachGoal = True
-
+                        mixer.music.load("music/snake_music/stage_clear.wav")
+                        mixer.music.play()
 
             self.draw_snake(game_screen, snake_locations, apple_loc)
             # Updating the screen after we've draw something on it
             pygame.display.update()
-

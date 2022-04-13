@@ -71,24 +71,28 @@ while running:
         mixer.music.pause()
         game = Cups(screen)
         game.home_screen()
-        mixer.music.unpause()
+        mixer.music.load("music/hub_music/Super Mario Party OST - Main Theme.wav")
+        mixer.music.play(-1)
         chose = -1
     if chose == 1:
         mixer.music.pause()
         game = Dino(screen)
         game.home_screen()
-        mixer.music.unpause()
+        mixer.music.load("music/hub_music/Super Mario Party OST - Main Theme.wav")
+        mixer.music.play(-1)
         chose = -1
     if chose == 2:
         mixer.music.pause()
         game = Snake(screen)
         game.start_menu()
-        mixer.music.unpause()
+        mixer.music.load("music/hub_music/Super Mario Party OST - Main Theme.wav")
+        mixer.music.play(-1)
         chose = -1
     if chose == 3:
         mixer.music.pause()
         game = Millioner(screen)
-        mixer.music.unpause()
+        mixer.music.load("music/hub_music/Super Mario Party OST - Main Theme.wav")
+        mixer.music.play(-1)
         chose = -1
     if chose == 4:
         display_high_scores()
