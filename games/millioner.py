@@ -102,10 +102,13 @@ class Millioner():
         background_image = "images/millioner_images/back.jpg"
         background_load = pygame.image.load(background_image)
         background_load = pygame.transform.scale(background_load, (WIDTH, HEIGHT))
+        add_image(screen, "images/millioner_images/back.jpg", 0, 0, WIDTH, HEIGHT, None)
 
         question_block_image = "images/millioner_images/quiestion_block.png"
         question_block_load = pygame.image.load(question_block_image)
         question_block_load = pygame.transform.scale(question_block_load, (QUESTION_BLOCK_WIDTH, QUESTION_BLOCK_HEIGHT))
+        add_image(screen, "images/millioner_images/quiestion_block.png", 0, 0, WIDTH, HEIGHT, None)
+
 
         fifty_button_image = "images/millioner_images/even_better_fifty.png"
         fifty_button_load = pygame.image.load(fifty_button_image)
@@ -345,6 +348,7 @@ class Millioner():
         notAnswered = True
         is_able_to_click = True
         while not player_closed:
+
             w = True
             if not isAble_50_50:
                 add_image(screen, "images/millioner_images/dark_fifty.png", FIFTY_BUTTON_WIDTH_LOC,
@@ -397,24 +401,49 @@ class Millioner():
                         player_closed = True
                     if mouse_in_button(answer1_button, mouse_pos):
                         chose = 1
+                        add_image(screen, "images/millioner_images/choice.png",
+                                  ANSWER1_LOCATION_WIDTH + BOX_MARGIN_WIDTH,
+                                  ANSWER1_LOCATION_HEIGHT + BOX_MARGIN_HEIGHT, ANSWER_BOX_SIZE_WIDTH,
+                                  ANSWER_BOX_SIZE_HEIGHT,
+                                  None)
+
                         if level == 10:
                             w = True
                             player_closed = True
                     if mouse_in_button(answer2_button, mouse_pos):
                         chose = 2
+                        add_image(screen, "images/millioner_images/choice.png",
+                                  ANSWER2_LOCATION_WIDTH + BOX_MARGIN_WIDTH,
+                                  ANSWER2_LOCATION_HEIGHT + BOX_MARGIN_HEIGHT, ANSWER_BOX_SIZE_WIDTH,
+                                  ANSWER_BOX_SIZE_HEIGHT,
+                                  None)
+
                         if level == 10:
                             w = True
                             player_closed = True
                     if mouse_in_button(answer3_button, mouse_pos):
                         chose = 3
+                        add_image(screen, "images/millioner_images/choice.png",
+                                  ANSWER3_LOCATION_WIDTH + BOX_MARGIN_WIDTH,
+                                  ANSWER3_LOCATION_HEIGHT + BOX_MARGIN_HEIGHT, ANSWER_BOX_SIZE_WIDTH,
+                                  ANSWER_BOX_SIZE_HEIGHT,
+                                  None)
+
                         if level == 10:
                             w = True
                             player_closed = True
                     if mouse_in_button(answer4_button, mouse_pos):
                         chose = 4
+                        add_image(screen, "images/millioner_images/choice.png",
+                                  ANSWER4_LOCATION_WIDTH + BOX_MARGIN_WIDTH,
+                                  ANSWER4_LOCATION_HEIGHT + BOX_MARGIN_HEIGHT, ANSWER_BOX_SIZE_WIDTH,
+                                  ANSWER_BOX_SIZE_HEIGHT,
+                                  None)
+
                         if level == 10:
                             w = True
                             player_closed = True
+                    self.display_questions(screen, question.get_question(), question.get_possible_answers())
                     if mouse_in_button(progress_bar, mouse_pos):
                         w = False
                         chose = 0
