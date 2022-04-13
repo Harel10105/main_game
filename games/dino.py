@@ -60,7 +60,7 @@ class Dino:
                         isJump = True
             self.screen.blit(self.back, (x_pos_screen, 0))
             self.screen.blit(text, textRect)
-            if X_PLAYER< x_enemy < X_PLAYER + round(WIDTH_PLAYER / 2) and (y_player+HEIGHT_PLAYER>=Y_ENEMY):
+            if X_PLAYER < x_enemy < X_PLAYER + round(WIDTH_PLAYER / 2) and (y_player + HEIGHT_PLAYER >= Y_ENEMY):
                 finish = True
             if isJump:
                 if y_player > PLAYER_JUMP_MAX_HEIGHT and not side:
