@@ -116,4 +116,4 @@ class Question:
         return 61
 
     def get_max_show(self):
-        return float(5.0+self.level)
+        return float(1.0+self.level)

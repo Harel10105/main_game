@@ -1,16 +1,21 @@
 import time
+
+from pygame import mixer
+
 from helpers_and_functions.function_helpers import *
 from helpers_and_functions.buttons_to_use.buttons_to_use_dino import *
-from images.dino_images import *
 
 
 class Dino:
     def __init__(self, screen):
         pygame.init()
+        mixer.init()
+        mixer.music.load("music/dino_music/Sonic The Hedgehog OST - Green Hill Zone (1).wav")
+        mixer.music.play(-1)
         self.screen = screen
         back = pygame.image.load("images/dino_images/dino_backgruond.png")
         self.back = pygame.transform.scale(back, (WIDTH * 10, HEIGHT))
-        enemy = pygame.image.load("images/dino_images/y.png")
+        enemy = pygame.image.load("images/dino_images/snake2.png")
         self.enemy = pygame.transform.scale(enemy, (WIDTH_ENEMY, HEIGHT_ENEMY))
         player = pygame.image.load("images/dino_images/dino_player.png").convert()
         player.set_colorkey((255, 255, 255))
@@ -41,7 +46,7 @@ class Dino:
         add_enemy = False
         refresh_rate = 200
         level = 1
-        x_pos = 0
+        x_pos_screen = 0
         x_enemy = X_ENEMY_START
         y_player = Y_PLAYER
         isJump = False
@@ -59,9 +64,9 @@ class Dino:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP and not isJump:
                         isJump = True
-            self.screen.blit(self.back, (x_pos, 0))
+            self.screen.blit(self.back, (x_pos_screen, 0))
             self.screen.blit(text, textRect)
-            if x_enemy == X_PLAYER + round(WIDTH_PLAYER / 2) and y_player == Y_PLAYER:
+            if X_PLAYER < x_enemy < X_PLAYER + round(WIDTH_PLAYER / 2) and (y_player + HEIGHT_PLAYER >= Y_ENEMY):
                 finish = True
             if isJump:
                 if y_player > PLAYER_JUMP_MAX_HEIGHT and not side:
@@ -74,7 +79,7 @@ class Dino:
                     side = False
             if not add_enemy:
                 add_enemy = True
-            if add_enemy and x_pos < 0:
+            if add_enemy and x_pos_screen < 0:
                 if x_enemy < -1 * WIDTH_ENEMY:
                     add_enemy = False
                     x_enemy = X_ENEMY_START
@@ -84,10 +89,10 @@ class Dino:
                     x_enemy -= 1
             self.screen.blit(self.player, (X_PLAYER, y_player))
 
-            if x_pos != -(WIDTH * 9):
-                x_pos -= 1
+            if x_pos_screen != -(WIDTH * 9):
+                x_pos_screen -= 1
             else:
-                x_pos = 0
+                x_pos_screen = 0
                 x_enemy += 3
                 add_enemy = False
 
