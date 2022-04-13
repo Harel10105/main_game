@@ -95,6 +95,6 @@ while running:
         mixer.music.play(-1)
         chose = -1
     if chose == 4:
-        display_high_scores()
+        display_high_scores([["snake" ,20], ["cups" ,40], ["dinosaur" ,30], ["millionaire" ,400]])
     pygame.display.update()
 pygame.quit()
