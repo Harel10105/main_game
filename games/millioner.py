@@ -4,7 +4,6 @@ import pygame
 from pygame import mixer
 from tkinter import *
 from PIL import ImageTk, Image
-from helpers_and_functions.constants_files.constants_millioner import *
 from games.class_helpers.Question import *
 from helpers_and_functions.buttons_to_use.buttons_to_use_millioner import *
 from helpers_and_functions.function_helpers import *
@@ -109,7 +108,6 @@ class Millioner():
         question_block_load = pygame.transform.scale(question_block_load, (QUESTION_BLOCK_WIDTH, QUESTION_BLOCK_HEIGHT))
         add_image(screen, "images/millioner_images/quiestion_block.png", 0, 0, WIDTH, HEIGHT, None)
 
-
         fifty_button_image = "images/millioner_images/even_better_fifty.png"
         fifty_button_load = pygame.image.load(fifty_button_image)
         fifty_button_load = pygame.transform.scale(fifty_button_load, (HELP_BUTTON_WIDTH, HELP_BUTTON_HEIGHT))
@@ -134,8 +132,6 @@ class Millioner():
         screen.blit(fifty_button_load, (FIFTY_BUTTON_WIDTH_LOC, FIFTY_BUTTON_HEIGHT_LOC))
 
         screen.blit(switch_button_load, (SWITCH_BUTTON_WIDTH_LOC, SWITCH_BUTTON_HEIGHT_LOC))
-
-
 
     def display_questions(self, screen, question, answers):
         display_text(screen, QUESTION_LOCATION_WIDTH, QUESTION_LOCATION_HEIGHT, question)
@@ -265,15 +261,21 @@ class Millioner():
             canvas.create_image(20, 20, anchor=NW, image=img)
             root.mainloop()
 
+    def get_high_score(self):
+        f = open("games/game_files/high_milioner", "r")
+        line = f.readlines()
+        return line[-1]
+
     def menu(self, screen):
         mixer.init()
         screen.fill(BLUE)
         add_image(screen, "images/millioner_images/exitLogo.png", round(WIDTH / 50), round(HEIGHT / 8),
                   round(WIDTH / 14.28),
                   round(HEIGHT / 16), PINK)
-        add_image(screen, "images/millioner_images/logo.png", WIDTH / 2 - round(WIDTH / 5), HEIGHT / 2 - round(HEIGHT / 4),
+        add_image(screen, "images/millioner_images/logo.png", WIDTH / 2 - round(WIDTH / 5),
+                  HEIGHT / 2 - round(HEIGHT / 4),
                   round(WIDTH / 2.5), round(HEIGHT / 2), PINK)
-        display_text(screen, WIDTH - round(WIDTH / 2), HEIGHT - round(HEIGHT / 5), "CLICK THE LOGO TO BEGIN"  )
+        display_text(screen, WIDTH - round(WIDTH / 2), HEIGHT - round(HEIGHT / 5), "CLICK THE LOGO TO BEGIN")
         mixer.music.set_volume(0.7)
         mixer.music.load("music/millioner_music/Main Theme.mp3")
         pygame.mixer.music.play(loops=-1)
@@ -311,6 +313,7 @@ class Millioner():
         mixer.music.stop()
 
     def game(self, screen):
+
         mixer.init()
         level = 0
         inLevel = False
@@ -322,6 +325,7 @@ class Millioner():
         chose = 0
         timer_event = pygame.USEREVENT + 1
         pygame.time.set_timer(timer_event, 1000)
+        start_time = time.time()
 
         self.start_pop_up(screen)
         # display_right(screen, 1)
@@ -329,7 +333,6 @@ class Millioner():
         background_image = "images/millioner_images/back.jpg"
         background_load = pygame.image.load(background_image)
         background_load = pygame.transform.scale(background_load, (WIDTH, HEIGHT))
-
 
         question_block_image = "images/millioner_images/quiestion_block.png"
         question_block_load = pygame.image.load(question_block_image)
@@ -516,6 +519,12 @@ class Millioner():
         print(isWin)
 
         if isWin:
+            current_time = time.time()
+            if current_time - start_time > float(self.get_high_score()):
+                with open("games/game_files/high_milioner", "r+") as file:
+                    file.seek(0)
+                    file.truncate(0)
+                    file.write(str(round(current_time - start_time)))
             self.player_win(screen)
         else:
             self.player_lose(screen)

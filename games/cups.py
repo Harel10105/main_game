@@ -1,12 +1,13 @@
 import random
-from pygame import mixer
+import time
 
+from pygame import mixer
 from helpers_and_functions.function_helpers import *
 from helpers_and_functions.buttons_to_use.buttons_to_use_cups import *
 
 
 class Cups:
-    def __init__(self,screen):
+    def __init__(self, screen):
         pygame.init()
         mixer.init()
         self.screen = screen
@@ -27,7 +28,8 @@ class Cups:
         self.finish_animation = False
         self.level = 10
         self.playlist = ["music/cups_music/Botanic Panic.wav", "music/cups_music/Carnival Kerfuffle.wav",
-                         "music/cups_music/Cuphead OST - Floral Fury [Music].wav", "music/cups_music/Cuphead OST - Hurry Up [Music].wav",
+                         "music/cups_music/Cuphead OST - Floral Fury [Music].wav",
+                         "music/cups_music/Cuphead OST - Hurry Up [Music].wav",
                          "music/cups_music/One Hell of a Time.wav"]
 
     def home_screen(self):
@@ -47,7 +49,6 @@ class Cups:
                         self.level = 10
             pygame.display.flip()
 
-
     def __init_game(self):
         self.current_y_cup = CUP_Y
         self.ball_pos = random.randint(1, 3)
@@ -63,6 +64,11 @@ class Cups:
         self.to_point = 0
         self.choose = -1
         self.finish_animation = False
+
+    def get_high_score(self):
+        f = open("games/game_files/high_cups", "r")
+        line = f.readlines()
+        return line[-1]
 
     def __go_to(self, from_point, to_point):
         finish = 0
@@ -143,7 +149,8 @@ class Cups:
             if self.switch_counter == 10:
                 self.finish_switches = True
 
-        add_image(self.screen, "images/cups_images/start.png", START_NEW_ROUND_X, START_NEW_ROUND_Y, START_NEW_ROUND_WIDTH,
+        add_image(self.screen, "images/cups_images/start.png", START_NEW_ROUND_X, START_NEW_ROUND_Y,
+                  START_NEW_ROUND_WIDTH,
                   START_NEW_ROUND_HEIGHT, (0, 0, 0))
         add_image(self.screen, "images/cups_images/cuphead.jpg", x_ball, BALL_Y, BALL_WIDTH, BALL_HEIGHT, None)
         add_image(self.screen, "images/cups_images/cup.jpg", self.posList[0], self.current_y_cup, CUP_WIDTH,
@@ -152,7 +159,8 @@ class Cups:
                   CUP_HEIGHT, (0, 0, 0))
         add_image(self.screen, "images/cups_images/cup.jpg", self.posList[2], self.current_y_cup, CUP_WIDTH,
                   CUP_HEIGHT, (0, 0, 0))
-        display_text(self.screen, round(WIDTH / 7) , round(HEIGHT / 8),"your score is: "+str(self.level -9))
+        display_text(self.screen, round(WIDTH / 7), round(HEIGHT / 8), "your level is: " + str(self.level - 9) +
+                     "highest level record: "+str(self.get_high_score()))
 
     def game_screen(self):
         mixer.music.load(self.playlist[0])
@@ -184,24 +192,41 @@ class Cups:
                         start = True
                     if mouse_in_button(first_cup_button, pos) and self.finish_switches:
                         self.choose = 1
+                        add_image(self.screen, "images/cups_images/arrow.png", FIRST_CUP_START_X, CUP_Y, CUP_WIDTH,
+                                  CUP_HEIGHT, (255, 255, 255))
                     if mouse_in_button(second_cup_button, pos) and self.finish_switches:
                         self.choose = 2
+                        add_image(self.screen, "images/cups_images/arrow.png", SECOND_CUP_START_X, CUP_Y, CUP_WIDTH,
+                                  CUP_HEIGHT, (255, 255, 255))
                     if mouse_in_button(third_cup_button, pos) and self.finish_switches:
                         self.choose = 3
+                        add_image(self.screen, "images/cups_images/arrow.png", THIRD_CUP_START_X, CUP_Y, CUP_WIDTH,
+                                  CUP_HEIGHT, (255, 255, 255))
                     if event.type == end_music:
                         mixer.music.queue(self.playlist[0])
                         tmp = self.playlist.pop(0)
                         self.playlist.append(tmp)
 
             if self.choose == self.ball_pos and self.choose != -1 and self.finish_animation:
+                add_image(self.screen, "images/cups_images/win.jpg", FEEDBACK_X, FEEDBACK_Y, FEEDBACK_WIDTH,
+                          FEEDBACK_HEIGHT, (255, 255, 255))
                 start = False
                 self.__init_game()
                 self.level += 1
+
+
             elif self.choose != self.ball_pos and self.choose != -1 and self.finish_animation:
+                add_image(self.screen, "images/cups_images/loss.jpg", FEEDBACK_X, FEEDBACK_Y, FEEDBACK_WIDTH,
+                          FEEDBACK_HEIGHT, (255, 255, 255))
                 finish = True
                 mixer.music.pause()
+
+            if int(self.get_high_score()) < self.level / 10 - 1:
+                print(1111)
+                with open("games/game_files/high_cups", "r+") as file:
+                    file.seek(0)
+                    file.truncate(0)
+                    file.write(str(self.level -9))
+
             pygame.display.update()
             clock.tick(refresh_rate)
-
-
-
