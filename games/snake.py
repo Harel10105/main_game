@@ -77,7 +77,7 @@ class Snake():
             font = pygame.font.Font('freesansbold.ttf', 64)
             text = font.render('S N A K E', True, (0, 255, 0), START_BACKGROUND_COLOR)
             textRect = text.get_rect()
-            textRect.center = (300, 100)
+            textRect.center = (round(WIDTH/2), round(HEIGHT/6))
             game_screen.blit(text, textRect)
             font = pygame.font.Font('freesansbold.ttf', 20)
             text = font.render('PRESS SPACE TO PLAY', True, (255, 255, 255), START_BACKGROUND_COLOR)
