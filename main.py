@@ -96,7 +96,20 @@ while running:
         mixer.music.play(-1)
         chose = -1
     if chose == 4:
-        display_high_scores()
+        f = open("games/game_files/high_milioner", "r")
+        line = f.readlines()
+        millionaire = line[-1]
+        f = open("games/game_files/high_dino", "r")
+        line = f.readlines()
+        dinosaur = line[-1]
+        f = open("games/game_files/high_cups", "r")
+        line = f.readlines()
+        cups = line[-1]
+        f = open("games/game_files/high_snake.txt", "r")
+        line = f.readlines()
+        snake = line[-1]
+        score_list = [["cups", cups],["dinosaur",dinosaur],["snake",snake],["millionaire",millionaire]]
+        display_high_scores(score_list)
     if chose == 5:
         display_information(screen)
     pygame.display.update()
