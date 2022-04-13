@@ -27,6 +27,12 @@ while running:
     add_image(screen, "images/menu_images/background.png", 0, 0, WIDTH, HEIGHT, None)
     add_image(screen, "images/menu_images/title2.jpg", MAIN_TITLE_X, MAIN_TITLE_Y, MAIN_TITLE_WIDTH, MAIN_TITLE_HEIGHT,(0,0,0))
     for i in range(len(angles)):
+        if i == 4 or i == 5:
+            color = (235, 183, 52)
+            color2 = (191, 143, 21)
+        else:
+            color = (51, 255, 221)
+            color2 = (72, 119, 111)
         angle = 270 - angles[i]
         horizontal = math.sin(math.radians(angle)) * RADIUS * 2
         vertical = math.cos(math.radians(angle)) * RADIUS * 2
@@ -34,9 +40,9 @@ while running:
         cords = pygame.mouse.get_pos()
         if CENTER[0] + horizontal - SMALL_RADIUS * 2 < cords[0] < CENTER[0] + horizontal + SMALL_RADIUS * 2 and CENTER[1]\
                 + vertical - SMALL_RADIUS * 2 < cords[1] < CENTER[1] + vertical + SMALL_RADIUS * 2:
-            pygame.draw.circle(screen, (51, 255, 221), (CENTER[0] + horizontal, CENTER[1] + vertical), SMALL_RADIUS * 3,
+            pygame.draw.circle(screen, color, (CENTER[0] + horizontal, CENTER[1] + vertical), SMALL_RADIUS * 3,
                                0)
-            pygame.draw.circle(screen, (72, 119, 111), (CENTER[0] + horizontal, CENTER[1] + vertical), SMALL_RADIUS * 3,
+            pygame.draw.circle(screen, color2, (CENTER[0] + horizontal, CENTER[1] + vertical), SMALL_RADIUS * 3,
                                3)
             if images[i] != "":
                 add_image(screen, images[i], CENTER[0] + horizontal - round(IMAGE_RADIUS * 1.5),
@@ -44,9 +50,9 @@ while running:
 
             display_text_menu(screen, TEXT_X, TEXT_Y, game_text[i])
         else:
-            pygame.draw.circle(screen, (51, 255, 221), (CENTER[0] + horizontal, CENTER[1] + vertical), SMALL_RADIUS * 2,
+            pygame.draw.circle(screen, color, (CENTER[0] + horizontal, CENTER[1] + vertical), SMALL_RADIUS * 2,
                                0)
-            pygame.draw.circle(screen, (72, 119, 111), (CENTER[0] + horizontal, CENTER[1] + vertical), SMALL_RADIUS * 2,
+            pygame.draw.circle(screen, color2, (CENTER[0] + horizontal, CENTER[1] + vertical), SMALL_RADIUS * 2,
                                3)
             if images[i] != "":
                 add_image(screen, images[i], CENTER[0] + horizontal - IMAGE_RADIUS, CENTER[1] + vertical - IMAGE_RADIUS,

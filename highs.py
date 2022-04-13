@@ -13,10 +13,8 @@ def display_text_high(screen, x, y, text):
 def display_high_scores(score_list):
     score_list.insert(0,["GAME", "SCORE"])
     pygame.init()
-
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     add_image(screen,"images/scores.jpg",0,0,WIDTH,HEIGHT,None)
-    add_image(screen, "images/back.png", BACK_X, BACK_Y, BACK_WIDTH, BACK_HEIGHT, None)
     for i in range(len(score_list)):
         for j in range(len(score_list[i])):
             display_text_high(screen, SCORE_WIDTH*j+SCORE_X, SCORE_HEIGHT*i+SCORE_Y,str(score_list[i][j]))
