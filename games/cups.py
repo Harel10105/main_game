@@ -188,12 +188,18 @@ class Cups:
                     if mouse_in_button(first_cup_button, pos) and self.finish_switches:
                         self.choose = 1
                         add_image(self.screen, "images/cups_images/arrow.png", FIRST_CUP_START_X, CUP_Y , CUP_WIDTH, CUP_HEIGHT, (255,255,255))
+                        pygame.display.update()
+                        time.sleep(2)
                     if mouse_in_button(second_cup_button, pos) and self.finish_switches:
                         self.choose = 2
                         add_image(self.screen, "images/cups_images/arrow.png", SECOND_CUP_START_X, CUP_Y, CUP_WIDTH, CUP_HEIGHT, (255,255,255))
+                        pygame.display.update()
+                        time.sleep(2)
                     if mouse_in_button(third_cup_button, pos) and self.finish_switches:
                         self.choose = 3
                         add_image(self.screen, "images/cups_images/arrow.png", THIRD_CUP_START_X, CUP_Y, CUP_WIDTH, CUP_HEIGHT, (255,255,255))
+                        pygame.display.update()
+                        time.sleep(2)
                     if event.type == end_music:
                         mixer.music.queue(self.playlist[0])
                         tmp = self.playlist.pop(0)
@@ -202,6 +208,8 @@ class Cups:
             if self.choose == self.ball_pos and self.choose != -1 and self.finish_animation:
                 add_image(self.screen, "images/cups_images/win.jpg", FEEDBACK_X, FEEDBACK_Y, FEEDBACK_WIDTH,
                           FEEDBACK_HEIGHT, (255,255,255))
+                pygame.display.update()
+                time.sleep(2)
                 start = False
                 self.__init_game()
                 self.level += 1
@@ -210,6 +218,8 @@ class Cups:
             elif self.choose != self.ball_pos and self.choose != -1 and self.finish_animation:
                 add_image(self.screen, "images/cups_images/loss.jpg", FEEDBACK_X, FEEDBACK_Y, FEEDBACK_WIDTH,
                           FEEDBACK_HEIGHT, (255,255,255))
+                pygame.display.update()
+                time.sleep(2)
                 finish = True
                 mixer.music.pause()
 
