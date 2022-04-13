@@ -14,7 +14,7 @@ for i in range(0, 180, round(180 / len(images))):
 
 RADIUS = round((WIDTH/7+HEIGHT/6)/2)
 SMALL_RADIUS = round((WIDTH/33+HEIGHT/30)/2)
-IMAGE_RADIUS = round((WIDTH/25+HEIGHT/22)/2)
+IMAGE_RADIUS = round((WIDTH/26+HEIGHT/22)/2)
 
 CENTER = (WIDTH / 2, HEIGHT)
 
