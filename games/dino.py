@@ -60,10 +60,15 @@ class Dino:
         clock = pygame.time.Clock()
         while not finish:
             current_time = time.time()
-            text = self.font.render("your time: " + str(round(current_time - start_time))+
-                                    " highest time is " + str(self.get_high_score()), True, (0, 0, 0))
+            text = self.font.render("Your Time: " + str(round(current_time - start_time))
+                                    , True, (0, 0, 0))
             textRect = text.get_rect()
-            textRect.topright = (round(WIDTH / 1.09), round(HEIGHT / 16))
+            textRect.topleft = (round(WIDTH/16), round(HEIGHT / 16))
+            text2 = self.font.render("Highest Time: " + str(self.get_high_score())
+                                    , True, (0, 0, 0))
+            textRect2 = text.get_rect()
+            textRect2.topright = (round(WIDTH / 1.09), round(HEIGHT / 16))
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     finish = True
@@ -72,6 +77,8 @@ class Dino:
                         isJump = True
             self.screen.blit(self.back, (x_pos_screen, 0))
             self.screen.blit(text, textRect)
+            self.screen.blit(text2, textRect2)
+
             if X_PLAYER < x_enemy < X_PLAYER + round(WIDTH_PLAYER / 2) and (y_player + HEIGHT_PLAYER >= Y_ENEMY):
                 finish = True
             if isJump:
