@@ -135,6 +135,8 @@ class Millioner():
 
         screen.blit(switch_button_load, (SWITCH_BUTTON_WIDTH_LOC, SWITCH_BUTTON_HEIGHT_LOC))
 
+
+
     def display_questions(self, screen, question, answers):
         display_text(screen, QUESTION_LOCATION_WIDTH, QUESTION_LOCATION_HEIGHT, question)
 
@@ -271,6 +273,7 @@ class Millioner():
                   round(HEIGHT / 16), PINK)
         add_image(screen, "images/millioner_images/logo.png", WIDTH / 2 - round(WIDTH / 5), HEIGHT / 2 - round(HEIGHT / 4),
                   round(WIDTH / 2.5), round(HEIGHT / 2), PINK)
+        display_text(screen, WIDTH - round(WIDTH / 2), HEIGHT - round(HEIGHT / 5), "CLICK THE LOGO TO BEGIN"  )
         mixer.music.set_volume(0.7)
         mixer.music.load("music/millioner_music/Main Theme.mp3")
         pygame.mixer.music.play(loops=-1)
@@ -327,6 +330,7 @@ class Millioner():
         background_load = pygame.image.load(background_image)
         background_load = pygame.transform.scale(background_load, (WIDTH, HEIGHT))
 
+
         question_block_image = "images/millioner_images/quiestion_block.png"
         question_block_load = pygame.image.load(question_block_image)
         question_block_load = pygame.transform.scale(question_block_load, (QUESTION_BLOCK_WIDTH, QUESTION_BLOCK_HEIGHT))
@@ -348,6 +352,8 @@ class Millioner():
         notAnswered = True
         is_able_to_click = True
         while not player_closed:
+            add_image(screen, "images/millioner_images/host.png", HOST_WIDTH_LOC, HOST_HEIGHT_LOC, HOST_WIDTH,
+                      HOST_HEIGHT, (255, 255, 255))
 
             w = True
             if not isAble_50_50:
