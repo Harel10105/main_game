@@ -22,6 +22,11 @@ class Dino:
         self.player = pygame.transform.scale(player, (WIDTH_PLAYER, HEIGHT_PLAYER))
         self.font = pygame.font.SysFont('bahnschrift', round(WIDTH / 70) + round(HEIGHT / 70))
 
+    def get_high_score(self):
+        f = open("games/game_files/high_dino", "r")
+        line = f.readlines()
+        return line[-1]
+
     def home_screen(self):
         self.screen.fill((255, 255, 255))
         fin = False
@@ -55,9 +60,10 @@ class Dino:
         clock = pygame.time.Clock()
         while not finish:
             current_time = time.time()
-            text = self.font.render(str(round(current_time - start_time)), True, (0, 0, 0))
+            text = self.font.render("your time: " + str(round(current_time - start_time))+
+                                    " highest time is " + str(self.get_high_score()), True, (0, 0, 0))
             textRect = text.get_rect()
-            textRect.center = (round(WIDTH / 1.09), round(HEIGHT / 16))
+            textRect.topright = (round(WIDTH / 1.09), round(HEIGHT / 16))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     finish = True
@@ -101,5 +107,11 @@ class Dino:
                 level = 0
             else:
                 level += 1
+            if int(self.get_high_score()) < round(current_time - start_time):
+                print(1111)
+                with open("games/game_files/high_dino", "r+") as file:
+                    file.seek(0)
+                    file.truncate(0)
+                    file.write(str(round(current_time - start_time)))
             pygame.display.update()
             clock.tick(refresh_rate)
