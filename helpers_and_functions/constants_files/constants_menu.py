@@ -1,5 +1,5 @@
-WIDTH = 700
-HEIGHT = 500
+WIDTH = 600
+HEIGHT = 600
 
 angles = []
 
