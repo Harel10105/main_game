@@ -9,6 +9,7 @@ from games.cups import Cups
 from games.dino import Dino
 from games.snake import Snake
 from games.millioner import Millioner
+from highs import display_high_scores
 
 pygame.init()
 mixer.init()
@@ -93,5 +94,7 @@ while running:
         mixer.music.load("music/hub_music/Super Mario Party OST - Main Theme.wav")
         mixer.music.play(-1)
         chose = -1
+    if chose == 4:
+        display_high_scores()
     pygame.display.update()
 pygame.quit()

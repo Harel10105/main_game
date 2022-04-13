@@ -1,5 +1,11 @@
 from helpers_and_functions.constants_files.constants_menu import WIDTH, HEIGHT
 
+HOST_HEIGHT_LOC = round(HEIGHT/5)
+HOST_WIDTH_LOC = round(WIDTH/2.8)
+HOST_HEIGHT = round(HEIGHT/4)
+HOST_WIDTH = round(WIDTH/4)
+
+
 QUESTION_BLOCK_HEIGHT = round(HEIGHT / 2.66)
 QUESTION_BLOCK_WIDTH = round(WIDTH / 1.42)
 

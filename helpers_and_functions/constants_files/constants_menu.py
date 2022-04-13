@@ -1,12 +1,12 @@
-WIDTH = 600
+WIDTH = 800
 HEIGHT = 600
 
 angles = []
 
 images = ["images/menu_images/cup.png", "images/menu_images/dino.png", "images/menu_images/snake.png",
-          "images/menu_images/miluner.png"]
+          "images/menu_images/dollar.png","images/menu_images/medal.png","images/menu_images/miluner.png"]
 
-game_text = ["CUPS", "DINOSAUR", "CLASSIC SNAKE", "MILLIONAIRE"]
+game_text = ["CUPS", "DINOSAUR", "CLASSIC SNAKE", "MILLIONAIRE","HIGH SCORES","INSTRUCTIONS"]
 
 for i in range(0, 180, round(180 / len(images))):
     angles.append(i + round(180 / len(images) / 2))
@@ -14,7 +14,7 @@ for i in range(0, 180, round(180 / len(images))):
 
 RADIUS = round((WIDTH/7+HEIGHT/6)/2)
 SMALL_RADIUS = round((WIDTH/33+HEIGHT/30)/2)
-IMAGE_RADIUS = round((WIDTH/25+HEIGHT/22)/2)
+IMAGE_RADIUS = round((WIDTH/26+HEIGHT/22)/2)
 
 CENTER = (WIDTH / 2, HEIGHT)
 
