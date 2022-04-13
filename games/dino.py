@@ -15,7 +15,7 @@ class Dino:
         self.screen = screen
         back = pygame.image.load("images/dino_images/dino_backgruond.png")
         self.back = pygame.transform.scale(back, (WIDTH * 10, HEIGHT))
-        enemy = pygame.image.load("images/dino_images/y.png")
+        enemy = pygame.image.load("images/dino_images/snake2.png")
         self.enemy = pygame.transform.scale(enemy, (WIDTH_ENEMY, HEIGHT_ENEMY))
         player = pygame.image.load("images/dino_images/dino_player.png").convert()
         player.set_colorkey((255, 255, 255))
