@@ -1,6 +1,7 @@
 import math
 
 import pygame.draw
+from pygame import mixer
 
 from helpers_and_functions.function_helpers import *
 from helpers_and_functions.Buttons import *
@@ -10,6 +11,7 @@ from games.snake import Snake
 from games.millioner import Millioner
 
 pygame.init()
+mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 buttons_position = []
 buttons_list = []
@@ -17,7 +19,8 @@ buttons_list = []
 add_image(screen, "images/menu_images/background.png", 0, 0, WIDTH, HEIGHT, None)
 running = True
 chose = -1
-
+mixer.music.load("music/hub_music/Super Mario Party OST - Main Theme.wav")
+mixer.music.play(-1)
 while running:
     add_image(screen, "images/menu_images/background.png", 0, 0, WIDTH, HEIGHT, None)
     for i in range(len(angles)):
@@ -63,19 +66,27 @@ while running:
                     break
 
     if chose == 0:
+        mixer.music.pause()
         game = Cups(screen)
         game.home_screen()
+        mixer.music.unpause()
         chose = -1
     if chose == 1:
+        mixer.music.pause()
         game = Dino(screen)
         game.home_screen()
+        mixer.music.unpause()
         chose = -1
     if chose == 2:
+        mixer.music.pause()
         game = Snake(screen)
         game.start_menu()
+        mixer.music.unpause()
         chose = -1
     if chose == 3:
+        mixer.music.pause()
         game = Millioner(screen)
+        mixer.music.unpause()
         chose = -1
     pygame.display.update()
 pygame.quit()
